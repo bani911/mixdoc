@@ -1,0 +1,599 @@
+<odoo>
+  <data>
+
+        <!-- generated list view Master Kalangan -->
+        <record model="ir.ui.view" id="kalangan_tree_view">
+            <field name="name">kalangan.tree</field>
+            <field name="model">kalangan.surat</field>
+            <field name="arch" type="xml">
+                <tree string="Kalangan Surat Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="kalangan_list_action">
+            <field name="name">Kalangan Surat</field>
+            <field name="res_model">kalangan.surat</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- generated list view Master Jenis Perusahaan -->
+        <record model="ir.ui.view" id="ju_tree_view">
+            <field name="name">ju.tree</field>
+            <field name="model">jenis.unit</field>
+            <field name="arch" type="xml">
+                <tree string="Jenis Unit Tree">
+                    <field name="name"/>
+                    <field name="kode"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="ju_list_action">
+            <field name="name">Tipe Organisasi</field>
+            <field name="res_model">jenis.unit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- generated list view Master Status -->
+        <record model="ir.ui.view" id="status_tree_view">
+            <field name="name">status.tree</field>
+            <field name="model">status.surat</field>
+            <field name="arch" type="xml">
+                <tree string="Status Surat Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="status_list_action">
+            <field name="name">Disposisi Status Surat Masuk</field>
+            <field name="res_model">status.surat</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!--form menu Master Jenis Surat-->
+        <record model="ir.ui.view" id="jenis_form_view">
+            <field name="name">jenis.form</field>
+            <field name="model">jenis.surat</field>
+            <field name="arch" type="xml">
+                <form string="Jenis Surat Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="kalangan"/>
+                                <field name="name"/>
+                                <field name="kode"/>
+                                <field name="ket"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- generated list view Master Jenis Surat -->
+        <record model="ir.ui.view" id="jenis_tree_view">
+            <field name="name">jenis.tree</field>
+            <field name="model">jenis.surat</field>
+            <field name="arch" type="xml">
+                <tree string="Jenis Surat Tree">
+                    <field name="kalangan"/>
+                    <field name="name"/>
+                    <field name="kode"/>
+                    <field name="ket"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="jenis_list_action">
+            <field name="name">Jenis Surat</field>
+            <field name="res_model">jenis.surat</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!--&lt;!&ndash;form menu Master Disposisi&ndash;&gt;-->
+        <!--<record model="ir.ui.view" id="disposisi_form_view">-->
+            <!--<field name="name">disposisi.form</field>-->
+            <!--<field name="model">disposisi</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="Disposisi Form">-->
+                    <!--<sheet>-->
+                        <!--<group>-->
+                            <!--<group>-->
+                                <!--<field name="name"/>-->
+                                <!--<field name="singkatan"/>-->
+                            <!--</group>-->
+                        <!--</group>-->
+                    <!--</sheet>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--&lt;!&ndash; generated list view Master Disposisi &ndash;&gt;-->
+        <!--<record model="ir.ui.view" id="disposisi_tree_view">-->
+            <!--<field name="name">disposisi.tree</field>-->
+            <!--<field name="model">disposisi</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="Disposisi Tree">-->
+                    <!--<field name="name"/>-->
+                    <!--<field name="singkatan"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--&lt;!&ndash;-->
+            <!--The following tag is an action definition for a "window action",-->
+            <!--that is an action opening a view or a set of views-->
+        <!--&ndash;&gt;-->
+        <!--<record model="ir.actions.act_window" id="disposisi_list_action">-->
+            <!--<field name="name">Disposisi</field>-->
+            <!--<field name="res_model">disposisi</field>-->
+            <!--<field name="view_type">form</field>-->
+            <!--<field name="view_mode">tree,form</field>-->
+			<!--<field name="domain">[]</field>-->
+			<!--<field name="context">{}</field>-->
+            <!--<field name="help" type="html">-->
+                <!--<p class="oe_view_nocontent_create">-->
+                    <!--Create the first thing-->
+                <!--</p>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!-- generated list view Master Jenis Dokumen -->
+        <record model="ir.ui.view" id="jd_tree_view">
+            <field name="name">jd.tree</field>
+            <field name="model">jenis.dokumen</field>
+            <field name="arch" type="xml">
+                <tree string="Jenis Dokumen Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="jd_list_action">
+            <field name="name">Jenis Dokumen</field>
+            <field name="res_model">jenis.dokumen</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!--form menu Master Bagian-->
+        <record model="ir.ui.view" id="bagian_form_view">
+            <field name="name">bagian.form</field>
+            <field name="model">bagian</field>
+            <field name="arch" type="xml">
+                <form string="Bagian Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="tipe_org" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}"/>
+                                <field name="name"/>
+                                <field name="singkatan"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- generated list view Master bagian -->
+        <record model="ir.ui.view" id="bagian_tree_view">
+            <field name="name">bagian.tree</field>
+            <field name="model">bagian</field>
+            <field name="arch" type="xml">
+                <tree string="Bagian Tree">
+                    <field name="tipe_org"/>
+                    <field name="name"/>
+                    <field name="singkatan"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="bagian_list_action">
+            <field name="name">Bagian</field>
+            <field name="res_model">bagian</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- generated list view Master Tempat Simpan -->
+        <record model="ir.ui.view" id="tempat_tree_view">
+            <field name="name">tempat.tree</field>
+            <field name="model">tempat.simpan</field>
+            <field name="arch" type="xml">
+                <tree string="Tempat Simpan Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="tempat_list_action">
+            <field name="name">Tempat Penyimpanan</field>
+            <field name="res_model">tempat.simpan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- generated list view Master disposisi_status_keluar -->
+        <record model="ir.ui.view" id="dsk_tree_view">
+            <field name="name">dsk.tree</field>
+            <field name="model">disposisi.status.keluar</field>
+            <field name="arch" type="xml">
+                <tree string="Disposisi Status Keluar Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="dsk_list_action">
+            <field name="name">Disposisi Status Keluar</field>
+            <field name="res_model">disposisi.status.keluar</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- generated list view Master jenis_perusahaan -->
+        <record model="ir.ui.view" id="jp_tree_view">
+            <field name="name">jp.tree</field>
+            <field name="model">jenis.perusahaan</field>
+            <field name="arch" type="xml">
+                <tree string="Jenis Perusahaan Tree">
+                    <field name="name"/>
+                    <field name="kode"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="jp_list_action">
+            <field name="name">Jenis Perusahaan</field>
+            <field name="res_model">jenis.perusahaan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- generated list view Master kuasa_fisik -->
+        <record model="ir.ui.view" id="kp_tree_view">
+            <field name="name">kp.tree</field>
+            <field name="model">kuasa.fisik</field>
+            <field name="arch" type="xml">
+                <tree string="Kuasa Fisik Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="kp_list_action">
+            <field name="name">Penguasaan Fisik</field>
+            <field name="res_model">kuasa.fisik</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- generated list view Master Kirim Prosedur -->
+        <record model="ir.ui.view" id="pp_tree_view">
+            <field name="name">pp.tree</field>
+            <field name="model">pengiriman.prosedur</field>
+            <field name="arch" type="xml">
+                <tree string="Pengiriman Prosedur Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="pp_list_action">
+            <field name="name">Pengiriman Prosedur</field>
+            <field name="res_model">pengiriman.prosedur</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- generated list view Master Gudang -->
+        <record model="ir.ui.view" id="gudang_tree_view">
+            <field name="name">gudang.tree</field>
+            <field name="model">gudang</field>
+            <field name="arch" type="xml">
+                <tree string="Gudang Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="gudang_list_action">
+            <field name="name">Gudang</field>
+            <field name="res_model">gudang</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!--form menu Master Nama Dokumen-->
+        <record model="ir.ui.view" id="namadok_form_view">
+            <field name="name">namadok.form</field>
+            <field name="model">nama.dokumen</field>
+            <field name="arch" type="xml">
+                <form string="Namadok Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="jenis_dokumen" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}"/>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- generated list view Master Nama Dokumen -->
+        <record model="ir.ui.view" id="namadok_tree_view">
+            <field name="name">namadok.tree</field>
+            <field name="model">nama.dokumen</field>
+            <field name="arch" type="xml">
+                <tree string="Namadok Tree">
+                    <field name="jenis_dokumen"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="namadok_list_action">
+            <field name="name">Nama Dokumen</field>
+            <field name="res_model">nama.dokumen</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- generated list view Master Penerima Eksternal -->
+        <record model="ir.ui.view" id="penerima_eksternal_tree_view">
+            <field name="name">penerima.eksternal.tree</field>
+            <field name="model">penerima.eksternal</field>
+            <field name="arch" type="xml">
+                <tree string="Penerima Eksternal Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="penerima_eksternal_list_action">
+            <field name="name">Penerima Eksternal</field>
+            <field name="res_model">penerima.eksternal</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- generated list view Master Organisasi Penerima Eksternal -->
+        <record model="ir.ui.view" id="org_penerima_eksternal_tree_view">
+            <field name="name">org.penerima.eksternal.tree</field>
+            <field name="model">org.penerima.eksternal</field>
+            <field name="arch" type="xml">
+                <tree string="Organisasi Penerima Eksternal Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="org_penerima_eksternal_list_action">
+            <field name="name">Organisasi Penerima Eksternal</field>
+            <field name="res_model">org.penerima.eksternal</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+
+        <!-- top level menu: no parent -->
+        <!--<menuitem id="main_mixdoc_menu" name="Mix Doc"/>-->
+
+        <!--Menu Master Kalangan-->
+        <menuitem id="master_menu" name="Master Data" parent="main_mixdoc_menu"/>
+        <menuitem id="kalangan_menu" name="Kalangan Surat" parent="master_menu"
+                  action="kalangan_list_action"/>
+        <!--Menu Master Jenis Unit-->
+        <menuitem id="ju_menu" name="Tipe Organisasi" parent="master_menu"
+                  action="ju_list_action"/>
+        <!--Menu Master Disposisi Status Surat Masuk-->
+        <menuitem id="status_menu" name="Disposisi Status Surat Masuk" parent="master_menu"
+                  action="status_list_action"/>
+        <!--Menu Master disposisi_status_keluar-->
+        <menuitem id="dsk_menu" name="Disposisi Status Surat Keluar" parent="master_menu"
+                  action="dsk_list_action"/>
+        <!--Menu Master Jenis Surat-->
+        <menuitem id="jenis_menu" name="Jenis Surat" parent="master_menu"
+                  action="jenis_list_action"/>
+        <!--Menu Master Disposisi-->
+        <!--<menuitem id="disposisi_menu" name="Disposisi" parent="master_menu"-->
+                  <!--action="disposisi_list_action"/>-->
+        <!--Menu Master Jenis Dokumen-->
+        <menuitem id="jd_menu" name="Jenis Dokumen" parent="master_menu"
+                  action="jd_list_action"/>
+        <!--Menu Master Nama Dokumen-->
+        <menuitem id="namadok_menu" name="Nama Dokumen" parent="master_menu"
+                  action="namadok_list_action"/>
+        <!--Menu Master Bagian-->
+        <menuitem id="bagian_menu" name="Bagian" parent="master_menu"
+                  action="bagian_list_action"/>
+        <!--Menu Master Tempat Simpan-->
+        <menuitem id="tempat_menu" name="Tempat Simpan" parent="master_menu"
+                  action="tempat_list_action"/>
+        <!--Menu Master Jenis Perusahaan-->
+        <menuitem id="jp_menu" name="Jenis Perusahaan" parent="master_menu"
+                  action="jp_list_action"/>
+        <!--Menu Master Kuasa Fisik-->
+        <menuitem id="kp_menu" name="Penguasaan Fisik" parent="master_menu"
+                  action="kp_list_action"/>
+        <!--Menu Master Pengiriman Prosedur-->
+        <menuitem id="pp_menu" name="Pengiriman Prosedur" parent="master_menu"
+                  action="pp_list_action"/>
+        <!--Menu Master Gudang-->
+        <menuitem id="gudang_menu" name="Gudang" parent="master_menu"
+                  action="gudang_list_action"/>
+        <!--Menu Master Penerima Eksternal-->
+        <menuitem id="penerima_eksternal_menu" name="Penerima Eksternal" parent="master_menu"
+                  action="penerima_eksternal_list_action"/>
+        <!--Menu Master Organisasi Penerima Eksternal-->
+        <menuitem id="org_penerima_eksternal_menu" name="Organisasi Penerima Eksternal" parent="master_menu"
+                  action="org_penerima_eksternal_list_action"/>
+
+  </data>
+</odoo>

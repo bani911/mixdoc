@@ -1,0 +1,169 @@
+<odoo>
+  <data>
+
+        <!--form menu-->
+        <record model="ir.ui.view" id="keluar_form_view">
+            <field name="name">keluar.form</field>
+            <field name="model">surat.keluar</field>
+            <field name="arch" type="xml">
+                <form string="Surat Keluar Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="company_id" invisible="1"/>
+                                <field name="no_surat"/>
+                                <field name="kalangan" placeholder="Kategori"/>
+                                <field name="jenis_surat" placeholder="Jenis Surat"/>
+                                <field name="contact_person" placeholder="PIC" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}"/>
+                                <!--<field name="jenis_perusahaan" placeholder="Jenis Perusahaan"/>-->
+                                <field name="tipe_org" placeholder="Tipe Organisasi" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}"/>
+                                <field name="bagian" placeholder="Bagian"/>
+                                <field name="tgl_surat"/>
+                                <field name="is_eksternal" invisible="1"/>
+                                    <field name="penerima" placeholder="Penerima/Ditujukan" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}" attrs="{'invisible': [('is_eksternal', '=', True)]}"/>
+                                    <field name="penerima_eksternal" placeholder="Penerima Eksternal" attrs="{'invisible': [('is_eksternal', '=', False)]}"/>
+                                    <field name="org_penerima" placeholder="Organisasi Penerima" attrs="{'invisible': [('is_eksternal', '=', True)]}"/>
+                                    <field name="org_penerima_eksternal" placeholder="Organisasi Penerima Eksternal" attrs="{'invisible': [('is_eksternal', '=', False)]}"/>
+                                <field name="perihal"/>
+                                <!--<field name="isi"/>-->
+                            </group>
+
+                            <group>
+                                <field name="bag_minta" placeholder="Bagian yg Meminta" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}"/>
+                                <field name="jabminta" placeholder="Yang Meminta" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}"/>
+                                <field name="jabttd" placeholder="Penandatangan" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}"/>
+                                <label for="lampiran_keluar" string="Lampiran 1"/>
+                                    <div class="o_row">
+                                        <field widget="binary" height="64" name="lampiran_keluar" filename="doc_filename_keluar"/>
+                                        <field name="doc_filename_keluar"/>
+                                    </div>
+                                <label for="lampiran_keluar2" string="Lampiran 2"/>
+                                    <div class="o_row">
+                                        <field widget="binary" height="64" name="lampiran_keluar2" filename="doc_filename_keluar2"/>
+                                        <field name="doc_filename_keluar2"/>
+                                    </div>
+                                <label for="lampiran_keluar3" string="Lampiran 3"/>
+                                    <div class="o_row">
+                                        <field widget="binary" height="64" name="lampiran_keluar3" filename="doc_filename_keluar3"/>
+                                        <field name="doc_filename_keluar3"/>
+                                    </div>
+                                <field name="ref_surat_masuk" placeholder="Referensi Surat Masuk" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}"/>
+
+                                <label string="Metode Pengiriman"/>
+                                <div class="o_row">
+                                    <field name="disposisi_status" placeholder="Metode Pengiriman"/>
+                                    <field name="tgl_kirim" placeholder="Tgl Kirim"/>
+                                </div>
+                                <!--<field name="macam_surat" placeholder="Macam Surat"/>-->
+                                <field name="keterangan"/>
+                                <label string="Penyimpanan"/>
+                                <div class="o_row">
+                                    <field name="tempat_simpan" placeholder="Penyimpanan"/>
+                                    <field name="ket_simpan" placeholder="Keterangan Penyimpanan"/>
+                                </div>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_keluar_form_custom" model="ir.ui.view">
+             <field name="name">keluar.form.view</field>
+             <field name="model">surat.keluar</field>
+             <field name="inherit_id" ref="keluar_form_view"/>
+             <field name="groups_id" eval="[(6, 0, [ref('mixdoc.group_control')])]"/>
+             <field name="arch" type="xml">
+                 <xpath expr="//field[@name='is_eksternal']" position="replace">
+                    <field name="is_eksternal" attrs="{'invisible':False}"/>
+                 </xpath>
+             </field>
+         </record>
+
+        <!-- override the automatically generated list view -->
+        <record model="ir.ui.view" id="keluar_tree_view">
+            <field name="name">keluar.tree</field>
+            <field name="model">surat.keluar</field>
+            <field name="arch" type="xml">
+                <tree string="Surat Keluar Tree">
+                    <field name="company_id"/>
+                    <field name="kalangan"/>
+                    <field name="no_surat"/>
+                    <field name="jenis_surat"/>
+                    <field name="contact_person"/>
+                    <field name="tipe_org"/>
+                    <field name="bagian"/>
+                    <field name="tgl_surat"/>
+                    <field name="penerima"/>
+                    <field name="org_penerima"/>
+                    <field name="penerima_eksternal" invisible="1"/>
+                    <field name="org_penerima_eksternal" invisible="1"/>
+                    <field name="perihal"/>
+                    <field name="bag_minta"/>
+                    <field name="jabminta"/>
+                    <field name="jabttd"/>
+                    <field name="ref_surat_masuk"/>
+                    <field name="disposisi_status"/>
+                    <field name="tgl_kirim"/>
+                    <field name="tempat_simpan"/>
+                    <field name="ket_simpan"/>
+                    <field name="keterangan"/>
+                    <field name="lampiran_keluar"/>
+                    <field name="lampiran_keluar2"/>
+                    <field name="lampiran_keluar3"/>
+                </tree>
+            </field>
+        </record>
+
+         <record id="view_keluar_tree_custom" model="ir.ui.view">
+             <field name="name">keluar.tree.view</field>
+             <field name="model">surat.keluar</field>
+             <field name="inherit_id" ref="keluar_tree_view"/>
+             <field name="groups_id" eval="[(6, 0, [ref('mixdoc.group_control')])]"/>
+             <field name="arch" type="xml">
+                <field name="penerima_eksternal" position="replace">
+                    <field name="penerima_eksternal" invisible="0"/>
+                </field>
+                <field name="org_penerima_eksternal" position="replace">
+                    <field name="org_penerima_eksternal" invisible="0"/>
+                </field>
+             </field>
+         </record>
+         
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="keluar_list_action">
+            <field name="name">Surat Keluar</field>
+            <field name="res_model">surat.keluar</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <record id="keluar_graph" model="ir.ui.view">
+            <field name="name">keluar.graph</field>
+            <field name="model">surat.keluar</field>
+            <field name="arch" type="xml">
+                <graph string="Surat Keluar" type="bar">
+                    <field name="company_id" group="True"/>
+                    <field name="no_surat" operator="+"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_mixdoc_menu" name="Mix Doc"/>
+        <menuitem id="mixdoc_menu" name="Mix Doc" parent="main_mixdoc_menu"/>
+        <menuitem id="keluar_menu" name="Surat Keluar" parent="mixdoc_menu"
+                  action="keluar_list_action"/>
+
+  </data>
+</odoo>

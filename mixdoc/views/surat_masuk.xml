@@ -1,0 +1,120 @@
+<odoo>
+  <data>
+
+        <!--form menu-->
+        <record model="ir.ui.view" id="masuk_form_view">
+            <field name="name">masuk.form</field>
+            <field name="model">surat.masuk</field>
+            <field name="arch" type="xml">
+                <form string="Surat Masuk Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="contact_person" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}"/>
+                                <field name="company_id"/>
+                                <field name="kalangan" placeholder="Kategori"/>
+                                <field name="jenis_surat" placeholder="Jenis Surat"/>
+                                <!--<field name="no_surat" invisible="1"/>-->
+                                <field name="pengirim"/>
+                                <field name="alamat"/>
+                                <field name="tgl_surat"/>
+                                <field name="no_eksternal"/>
+                                <field name="perihal"/>
+                            </group>
+
+                            <group>
+                                <field name="penerima" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}"/>
+                                <field name="tipe_org" placeholder="Tipe Organisasi"/>
+                                <field name="bagian" placeholder="Bagian"/>
+                                <field name="tgl_terima"/>
+                                <label for="lampiran_masuk" string="Lampiran 1"/>
+                                <div class="o_row">
+                                    <field widget="binary" height="64" name="lampiran_masuk" filename="doc_filename_masuk"/>
+                                    <field name="doc_filename_masuk"/>
+                                </div>
+                                <label for="lampiran_masuk2" string="Lampiran 2"/>
+                                <div class="o_row">
+                                    <field widget="binary" height="64" name="lampiran_masuk2" filename="doc_filename_masuk2"/>
+                                    <field name="doc_filename_masuk2"/>
+                                </div>
+                                <label string="Penyimpanan"/>
+                                <div class="o_row">
+                                    <field name="tempat_simpan" placeholder="Penyimpanan"/>
+                                    <field name="ket_simpan" placeholder="Keterangan Penyimpanan"/>
+                                </div>
+                                <!--<field name="macam_surat" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}" placeholder="Macam Surat"/>-->
+                                <!--<field name="disposisi" placeholder="Disposisi"/>-->
+                                <field name="status" placeholder="Status"/>
+                                <field name="keterangan"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- override the automatically generated list view -->
+        <record model="ir.ui.view" id="masuk_tree_view">
+            <field name="name">masuk.tree</field>
+            <field name="model">surat.masuk</field>
+            <field name="arch" type="xml">
+                <tree string="Surat Masuk Tree">
+                    <field name="company_id"/>
+                    <field name="contact_person"/>
+                    <field name="kalangan"/>
+                    <field name="pengirim"/>
+                    <field name="alamat"/>
+                    <field name="tgl_surat"/>
+                    <field name="no_eksternal"/>
+                    <field name="perihal"/>
+                    <field name="penerima"/>
+                    <field name="tipe_org"/>
+                    <field name="bagian"/>
+                    <field name="tgl_terima"/>
+                    <field name="tempat_simpan"/>
+                    <field name="ket_simpan"/>
+                    <field name="status"/>
+                    <field name="keterangan"/>
+                    <field name="lampiran_masuk"/>
+                    <field name="lampiran_masuk2"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="masuk_list_action">
+            <field name="name">Surat Masuk</field>
+            <field name="res_model">surat.masuk</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <record id="masuk_graph" model="ir.ui.view">
+            <field name="name">masuk.graph</field>
+            <field name="model">surat.masuk</field>
+            <field name="arch" type="xml">
+                <graph string="Surat Masuk" type="bar">
+                    <field name="company_id" group="True"/>
+                    <field name="no_eksternal" operator="+"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_mixdoc_menu" name="Mix Doc"/>
+        <menuitem id="mixdoc_menu" name="Mix Doc" parent="main_mixdoc_menu"/>
+        <menuitem id="masuk_menu" name="Surat Masuk" parent="mixdoc_menu"
+                  action="masuk_list_action"/>
+
+  </data>
+</odoo>

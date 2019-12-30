@@ -1,0 +1,127 @@
+<odoo>
+  <data>
+
+        <!--form menu-->
+        <record model="ir.ui.view" id="prosedur_form_view">
+            <field name="name">prosedur.form</field>
+            <field name="model">prosedur</field>
+            <field name="arch" type="xml">
+                <form string="Prosedur Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="company_id"/>
+                                <field name="no_prosedur"/>
+                                <field name="name"/>
+                                <!--<field name="kirim_prosedur" placeholder="Pengiriman Prosedur"/>-->
+                                <label for="lampiran_prosedur" string="Lampiran"/>
+                                    <div class="o_row">
+                                        <field widget="binary" height="64" name="lampiran_prosedur" filename="doc_filename_prosedur"/>
+                                        <field name="doc_filename_prosedur"/>
+                                    </div>
+                            </group>
+
+                            <group>
+                                <field name="tgl_terbit"/>
+                                <field name="pemrakarsa"/>
+                                <!--<field name="penerima" placeholder="Diterima Oleh"/>-->
+                                <!--<field name="tgl_terima" invisible="0"/>-->
+                                <field name="keterangan"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Item List">
+                              <field name="item_list">
+                                <tree editable="bottom">
+                                  <field name="no_dok"/>
+                                  <field name="nama_dok"/>
+                                  <field name="tgl_efektif"/>
+                                </tree>
+                              </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--<record id="view_prosedur_form_custom" model="ir.ui.view">-->
+             <!--<field name="name">prosedur.form.view</field>-->
+             <!--<field name="model">prosedur</field>-->
+             <!--<field name="inherit_id" ref="prosedur_form_view"/>-->
+             <!--<field name="groups_id" eval="[(6, 0, [ref('mixdoc.group_control')])]"/>-->
+             <!--<field name="arch" type="xml">-->
+                 <!--<xpath expr="//field[@name='tgl_terima']" position="replace">-->
+                    <!--<field name="tgl_terima" attrs="{'invisible':False}"/>-->
+                 <!--</xpath>-->
+             <!--</field>-->
+         <!--</record>-->
+
+         <!--<record id="view_prosedur_tree_custom" model="ir.ui.view">-->
+             <!--<field name="name">prosedur.tree.view</field>-->
+             <!--<field name="model">prosedur</field>-->
+             <!--<field name="inherit_id" ref="prosedur_tree_view"/>-->
+             <!--<field name="groups_id" eval="[(6, 0, [ref('mixdoc.group_control')])]"/>-->
+             <!--<field name="arch" type="xml">-->
+                <!--<field name="tgl_terima" position="replace">-->
+                    <!--<field name="tgl_terima" invisible="0"/>-->
+                <!--</field>-->
+             <!--</field>-->
+         <!--</record>-->
+
+        <!-- override the automatically generated list view -->
+        <record model="ir.ui.view" id="prosedur_tree_view">
+            <field name="name">prosedur.tree</field>
+            <field name="model">prosedur</field>
+            <field name="arch" type="xml">
+                <tree string="Prosedur Tree">
+                    <field name="company_id"/>
+                    <field name="no_prosedur"/>
+                    <field name="name"/>
+                    <field name="tgl_terbit"/>
+                    <field name="pemrakarsa"/>
+                    <!--<field name="kirim_prosedur"/>-->
+                    <!--<field name="penerima"/>-->
+                    <!--<field name="tgl_terima" invisible="0"/>-->
+                    <field name="keterangan"/>
+                    <field name="lampiran_prosedur"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="prosedur_list_action">
+            <field name="name">Prosedur, Petunjuk Kerja / WI</field>
+            <field name="res_model">prosedur</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <record id="prosedur_graph" model="ir.ui.view">
+            <field name="name">prosedur.graph</field>
+            <field name="model">prosedur</field>
+            <field name="arch" type="xml">
+                <graph string="Prosedur" type="bar">
+                    <field name="company_id" group="True"/>
+                    <field name="no_prosedur" operator="+"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_mixdoc_menu" name="Mix Doc"/>
+        <menuitem id="mixdoc_menu" name="Mix Doc" parent="main_mixdoc_menu"/>
+        <menuitem id="prosedur_menu" name="Prosedur, Petunjuk Kerja / WI" parent="mixdoc_menu" action="prosedur_list_action"/>
+
+  </data>
+</odoo>

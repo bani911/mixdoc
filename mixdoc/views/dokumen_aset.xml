@@ -1,0 +1,116 @@
+<odoo>
+  <data>
+
+        <!--form menu-->
+        <record model="ir.ui.view" id="aset_form_view">
+            <field name="name">aset.form</field>
+            <field name="model">dokumen.aset</field>
+            <field name="arch" type="xml">
+                <form string="Dokumen Aset Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="contact_person" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}"/>
+                                <field name="company_id"/>
+                                <field name="jenis_unit" placeholder="Tipe Organisasi"/>
+                                <field name="bagian" placeholder="Bagian"/>
+                                <field name="jenis_dokumen" placeholder="Jenis Dokumen"/>
+                                <field name="no_eksternal"/>
+                                <field name="nama"/>
+                                <field name="perihal"/>
+                                <field name="atas_nama"/>
+                                <!--<field name="penerbit"/>-->
+                                <!--<field name="tgl_terbit"/>-->
+                                <!--<field name="tgl_expired"/>-->
+                                <field name="luas"/>
+                                <field name="nilai_perolehan"/>
+                                <field name="kuasa_fisik" placeholder="Penguasaan Fisik"/>
+                                <field name="notaris"/>
+                            </group>
+
+                            <group>
+                                <!--<field name="is_valid"/>-->
+                                <label for="lampiran_dokumen" string="Lampiran 1"/>
+                                    <div class="o_row">
+                                        <field widget="binary" height="64" name="lampiran_dokumen" filename="doc_filename_dokumen"/>
+                                        <field name="doc_filename_dokumen"/>
+                                    </div>
+                                <label for="lampiran_dokumen2" string="Lampiran 2"/>
+                                    <div class="o_row">
+                                        <field widget="binary" height="64" name="lampiran_dokumen2" filename="doc_filename_dokumen2"/>
+                                        <field name="doc_filename_dokumen2"/>
+                                    </div>
+                                <label for="lampiran_dokumen3" string="Lampiran 3"/>
+                                    <div class="o_row">
+                                        <field widget="binary" height="64" name="lampiran_dokumen3" filename="doc_filename_dokumen3"/>
+                                        <field name="doc_filename_dokumen3"/>
+                                    </div>
+                                <label string="Penyimpanan"/>
+                                <div class="o_row">
+                                    <field name="tempat_simpan" placeholder="Penyimpanan"/>
+                                    <field name="ket_simpan" placeholder="Keterangan Penyimpanan"/>
+                                </div>
+                                <field name="keterangan"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- override the automatically generated list view -->
+        <record model="ir.ui.view" id="aset_tree_view">
+            <field name="name">aset.tree</field>
+            <field name="model">dokumen.aset</field>
+            <field name="arch" type="xml">
+                <tree string="Dokumen Aset Tree">
+                    <field name="lampiran_dokumen"/>
+                    <field name="lampiran_dokumen2"/>
+                    <field name="lampiran_dokumen3"/>
+                    <field name="company_id"/>
+                    <!--<field name="no_dokumen"/>-->
+                    <field name="jenis_dokumen"/>
+                    <field name="nama"/>
+                    <field name="no_eksternal"/>
+                    <field name="perihal"/>
+                    <!--<field name="penerbit"/>-->
+                    <!--<field name="tgl_terbit"/>-->
+                    <!--<field name="tgl_expired"/>-->
+                    <!--<field name="is_valid"/>-->
+                    <field name="tempat_simpan"/>
+                    <field name="ket_simpan"/>
+                    <field name="kuasa_fisik"/>
+                    <field name="luas"/>
+                    <field name="nilai_perolehan"/>
+                    <field name="atas_nama"/>
+                    <field name="notaris"/>
+                    <field name="keterangan"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="aset_list_action">
+            <field name="name">Dokumen Aset</field>
+            <field name="res_model">dokumen.aset</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="dm1_menu" name="Document Management" parent="main_mixdoc_menu"/>
+        <menuitem id="aset_menu" name="Aset" parent="dm1_menu"
+                  action="aset_list_action"/>
+
+  </data>
+</odoo>

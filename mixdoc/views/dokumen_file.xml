@@ -1,0 +1,124 @@
+<odoo>
+  <data>
+
+        <!--form menu-->
+        <record model="ir.ui.view" id="dokumen_form_view">
+            <field name="name">dokumen.form</field>
+            <field name="model">dokumen.file</field>
+            <field name="arch" type="xml">
+                <form string="Dokumen File Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="contact_person" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}"/>
+                                <field name="company_id"/>
+                                <field name="jenis_unit" placeholder="Tipe Organisasi"/>
+                                <field name="bagian" placeholder="Bagian"/>
+                                <field name="jenis_dokumen" placeholder="Jenis Dokumen"/>
+                                <field name="nama_dok" placeholder="Nama Dokumen"/>
+                                <field name="no_eksternal"/>
+                                <!--<field name="nama"/>-->
+                                <field name="perihal"/>
+                                <field name="penerbit"/>
+                                <field name="notaris"/>
+                                <field name="tgl_terbit"/>
+                                <field name="tgl_expired"/>
+                                <field name="tgl_perpanjangan"/>
+                                <!--<field name="luas"/>-->
+                                <!--<field name="nilai_perolehan"/>-->
+                            </group>
+
+                            <group>
+                                <!--<field name="is_valid"/>-->
+                                <!--<field name="kuasa_fisik" placeholder="Penguasaan Fisik"/>-->
+                                <!--<field name="atas_nama"/>-->
+                                <!--<field name="notaris"/>-->
+                                <label string="Penyimpanan"/>
+                                <div class="o_row">
+                                    <field name="tempat_simpan" placeholder="Penyimpanan"/>
+                                    <field name="ket_simpan" placeholder="Keterangan Penyimpanan"/>
+                                </div>
+                                <field name="keterangan"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Item List">
+                              <field name="item_list">
+                                <tree editable="bottom">
+                                  <field name="tgl_dok"/>
+                                  <field name="nama_dok"/>
+                                  <field name="tgl_terbit"/>
+                                  <field name="lampiran_dok"/>
+                                </tree>
+                              </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- override the automatically generated list view -->
+        <record model="ir.ui.view" id="dokumen_tree_view">
+            <field name="name">dokumen.tree</field>
+            <field name="model">dokumen.file</field>
+            <field name="arch" type="xml">
+                <tree colors="red:tgl_expired &lt; current_date;" string="Dokumen File Tree">
+                    <field name="company_id"/>
+                    <field name="no_eksternal"/>
+                    <field name="nama_dok"/>
+                    <field name="jenis_dokumen"/>
+                    <field name="tgl_terbit"/>
+                    <field name="tgl_expired"/>
+                    <field name="tgl_perpanjangan"/>
+                    <field name="penerbit"/>
+                    <field name="notaris"/>
+                    <field name="perihal"/>
+                    <field name="tempat_simpan"/>
+                    <field name="ket_simpan"/>
+                    <field name="keterangan"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="dokumen_list_action">
+            <field name="name">Document Management System</field>
+            <field name="res_model">dokumen.file</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- Default Search tgl expired -->
+        <!--<record id="view_dokumen_search" model="ir.ui.view">-->
+          <!--<field name="name">Dokumen Filter</field>-->
+          <!--<field name="model">dokumen.file</field>-->
+          <!--<field name="arch" type="xml">-->
+
+            <!--<field name="nama" position="after">-->
+                <!--<separator/>-->
+                    <!--<group expand="0" string="Group By...">-->
+                        <!--<filter string="Plant Penerima" name='group_by_company_id' icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'company_id'}"/>-->
+                <!--<separator/>-->
+                        <!--<filter name="my_ideas" string="My Ideas" domain="[('contact_person', '=', uid)]"/>-->
+                <!--</group>-->
+            <!--</field>-->
+
+          <!--</field>-->
+        <!--</record>-->
+
+        <!-- top level menu: no parent -->
+        <menuitem id="dm1_menu" name="Document Management System" parent="main_mixdoc_menu" action="dokumen_list_action"/>
+
+  </data>
+</odoo>

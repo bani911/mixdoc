@@ -1,0 +1,96 @@
+<odoo>
+  <data>
+
+        <!--form menu-->
+        <record model="ir.ui.view" id="arsip_form_view">
+            <field name="name">arsip.form</field>
+            <field name="model">gudang.arsip</field>
+            <field name="arch" type="xml">
+                <form string="Gudang Arsip Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="company_id"/>
+                                <field name="no_dok"/>
+                                <field name="unit_kerja" placeholder="Unit Kerja"/>
+                                <field name="name"/>
+                                <field name="tahun"/>
+                                <field name="masa_berlaku"/>
+                                <field name="no_kotak"/>
+                                <label for="lampiran_dok" string="Lampiran Dokumen"/>
+                                    <div class="o_row">
+                                        <field widget="binary" height="64" name="lampiran_dok" filename="doc_filename_dok"/>
+                                        <field name="doc_filename_dok"/>
+                                    </div>
+                                <field name="penyerah_dok" placeholder="Yang Menyerahkan Dokumen"/>
+                                <field name="tgl_terima" placeholder="Tgl Penyerahan Dokumen"/>
+                                <field name="keterangan"/>
+                            </group>
+
+                            <group>
+                                <field name="penerima" placeholder="Penerima"/>
+                                <field name="tgl_masuk"/>
+                                <field name="gudang" placeholder="Gudang"/>
+                                <label string="Penyimpanan"/>
+                                <div class="o_row">
+                                    <field name="no_gudang" placeholder="Nomor Gudang"/>
+                                    <field name="no_rak" placeholder="Nomor Rak"/>
+                                </div>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- override the automatically generated list view -->
+        <record model="ir.ui.view" id="arsip_tree_view">
+            <field name="name">arsip.tree</field>
+            <field name="model">gudang.arsip</field>
+            <field name="arch" type="xml">
+                <tree string="Gudang Arsip Tree">
+                    <field name="company_id"/>
+                    <field name="unit_kerja"/>
+                    <field name="no_dok"/>
+                    <field name="name"/>
+                    <field name="tahun"/>
+                    <field name="masa_berlaku"/>
+                    <field name="no_kotak"/>
+                    <field name="penyerah_dok"/>
+                    <field name="tgl_terima"/>
+                    <field name="penerima"/>
+                    <field name="tgl_masuk"/>
+                    <field name="no_gudang"/>
+                    <field name="no_rak"/>
+                    <field name="keterangan"/>
+                    <field name="lampiran_dok"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="arsip_list_action">
+            <field name="name">Gudang Arsip</field>
+            <field name="res_model">gudang.arsip</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_mixdoc_menu" name="Mix Doc"/>
+        <menuitem id="mixdoc_menu" name="Mix Doc" parent="main_mixdoc_menu"/>
+        <menuitem id="arsip_menu" name="Gudang Arsip" parent="mixdoc_menu"
+                  action="arsip_list_action"/>
+
+  </data>
+</odoo>

@@ -1,0 +1,99 @@
+<odoo>
+  <data>
+
+        <!--form menu-->
+        <record model="ir.ui.view" id="akta_form_view">
+            <field name="name">akta.form</field>
+            <field name="model">dokumen.akta</field>
+            <field name="arch" type="xml">
+                <form string="Dokumen Akta Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="contact_person" options="{'no_open': True,'no_create_edit': True,'no_quick_create': True}" placeholder="PIC"/>
+                                <field name="company_id"/>
+                                <field name="jenis_unit" placeholder="Tipe Organisasi"/>
+                                <field name="bagian" placeholder="Bagian"/>
+                                <field name="jenis_dokumen" placeholder="Jenis Dokumen"/>
+                                <field name="tgl_akta"/>
+                                <field name="nama"/>
+                                <field name="perihal"/>
+                                <field name="notaris"/>
+                            </group>
+
+                            <group>
+                                <label for="lampiran_dokumen" string="Lampiran 1"/>
+                                    <div class="o_row">
+                                        <field widget="binary" height="64" name="lampiran_dokumen" filename="doc_filename_dokumen"/>
+                                        <field name="doc_filename_dokumen"/>
+                                    </div>
+                                <label for="lampiran_dokumen2" string="Lampiran 2"/>
+                                    <div class="o_row">
+                                        <field widget="binary" height="64" name="lampiran_dokumen2" filename="doc_filename_dokumen2"/>
+                                        <field name="doc_filename_dokumen2"/>
+                                    </div>
+                                <label for="lampiran_dokumen3" string="Lampiran 3"/>
+                                    <div class="o_row">
+                                        <field widget="binary" height="64" name="lampiran_dokumen3" filename="doc_filename_dokumen3"/>
+                                        <field name="doc_filename_dokumen3"/>
+                                    </div>
+                                <label string="Penyimpanan"/>
+                                <div class="o_row">
+                                    <field name="tempat_simpan" placeholder="Penyimpanan"/>
+                                    <field name="ket_simpan" placeholder="Keterangan Penyimpanan"/>
+                                </div>
+                                <field name="keterangan"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- override the automatically generated list view -->
+        <record model="ir.ui.view" id="akta_tree_view">
+            <field name="name">akta.tree</field>
+            <field name="model">dokumen.akta</field>
+            <field name="arch" type="xml">
+                <tree string="Dokumen Akta Tree">
+                    <field name="lampiran_dokumen"/>
+                    <field name="lampiran_dokumen2"/>
+                    <field name="lampiran_dokumen3"/>
+                    <field name="company_id"/>
+                    <field name="jenis_dokumen"/>
+                    <field name="nama"/>
+                    <field name="perihal"/>
+                    <field name="tgl_akta"/>
+                    <field name="tempat_simpan"/>
+                    <field name="ket_simpan"/>
+                    <field name="notaris"/>
+                    <field name="keterangan"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="akta_list_action">
+            <field name="name">Dokumen Akta Perusahaan dan Sewa Menyewa</field>
+            <field name="res_model">dokumen.akta</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+			<field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create the first thing
+                </p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="dm1_menu" name="Document Management" parent="main_mixdoc_menu"/>
+        <menuitem id="akta_menu" name="Akta Perusahaan dan Sewa Menyewa" parent="dm1_menu"
+                  action="akta_list_action"/>
+
+  </data>
+</odoo>
